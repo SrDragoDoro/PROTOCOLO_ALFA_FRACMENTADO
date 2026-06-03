@@ -20,25 +20,32 @@ public class TorretaBase : MonoBehaviour
     private float temporizador;
 
 
+    public GameObject Target;
+
     private void Awake()
     {
-        ConfigurarTorreta();
+        //ConfigurarTorreta();
     }
 
-    private void OnValidate()
+   /* private void OnValidate()
     {
         ConfigurarTorreta();
-    }
+    }*/
 
     private void Update()
     {
-        temporizador += Time.deltaTime;
+       /* temporizador += Time.deltaTime;
 
         if (temporizador >= tiempoEntreDisparos)
         {
             Disparar();
             temporizador = 0f;
-        }
+        }*/
+    }
+    private void FixedUpdate()
+    {
+        ShootEnemy();
+        DetectEnemies();
     }
 
     private void ConfigurarTorreta()
@@ -83,7 +90,86 @@ public class TorretaBase : MonoBehaviour
 
         if (bala != null)
         {
-            bala.Inicializar(daño);
+           // bala.Inicializar(daño);
         }
+    }
+
+
+    public void ShootEnemy()
+    {
+        if (Target == null) return;
+
+        if(Vector3.Distance(Target.transform.position, transform.position) > alcance)
+        {
+            Target = null;
+            return;
+        }
+
+
+
+        if(Target != null)
+        {
+            Vector3 dirShoot = (Target.transform.position - transform.localPosition).normalized;
+            dirShoot.y = 0;
+            transform.up = dirShoot;
+
+
+
+            temporizador += Time.deltaTime;
+
+            if (temporizador >= tiempoEntreDisparos)
+            {
+                ShootToShoot();
+                temporizador = 0f;
+            }
+
+           
+        }
+    }
+    public void ShootToShoot()
+    {
+        Vector3 dirShoot = (Target.transform.position - transform.position).normalized;
+
+        GameObject bullet = Instantiate(balaPrefab, transform.position, Quaternion.identity);
+
+        bullet.transform.up = dirShoot;
+    }
+
+    public void DetectEnemies()
+    {
+        if (Target != null) return;
+
+
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, alcance);
+
+        GameObject enemy = null;
+        float minDistance = 0;
+
+        foreach ( Collider2D coll in colls )
+        {
+            if(coll.CompareTag("Enemy"))
+            {
+                if(enemy == null)
+                {
+                    enemy = coll.gameObject;
+                    minDistance = Vector3.Distance(enemy.transform.position, transform.position);
+                }
+                else
+                {
+                    if (Vector3.Distance(coll.gameObject.transform.position, transform.position) < minDistance)
+                    {
+                        enemy = coll.gameObject;
+                        minDistance = Vector3.Distance(enemy.transform.position, transform.position);
+                    }
+
+                }
+            }
+        }
+        Target = enemy;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, alcance);
     }
 }
