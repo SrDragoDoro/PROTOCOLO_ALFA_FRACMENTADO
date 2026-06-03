@@ -14,8 +14,8 @@ public class TorretaBase : MonoBehaviour
     [SerializeField] private TipoTorreta tipoTorreta;
     [SerializeField] private GameObject balaPrefab;
     [SerializeField] private Transform puntoDisparo;
-    [SerializeField] private float alcance;
-    [SerializeField] private float daño;
+    [SerializeField] private float alcance = 1.0f;
+    [SerializeField] private float daño = 10;
     [SerializeField] private float tiempoEntreDisparos;
     private float temporizador;
 
@@ -83,7 +83,7 @@ public class TorretaBase : MonoBehaviour
 
         if (bala != null)
         {
-            bala.Inicializar(daño);
+            //bala.Inicializar(daño);
         }
     }
 }
