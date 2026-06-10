@@ -19,14 +19,19 @@ public class TorretaBase : MonoBehaviour
     [SerializeField] private float tiempoEntreDisparos;
     private float temporizador;
 
-
+    private SpriteRenderer spriteTorsoTorrta;
     public GameObject Target;
 
     private void Awake()
     {
         //ConfigurarTorreta();
     }
-
+    public void Set(TurretData data)
+    {
+        alcance = data.TurrentRange;
+        daño = data.TurrentRange;
+        tiempoEntreDisparos = data.TurrentRange;
+    }
     /* private void OnValidate()
      {
          ConfigurarTorreta();
