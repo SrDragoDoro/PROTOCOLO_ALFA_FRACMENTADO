@@ -1,48 +1,55 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // Obligatorio
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerControlet : MonoBehaviour
 {
-    [SerializeField] private float speed = 20f; 
+    [SerializeField] private float speed = 20f;
 
     private SpriteRenderer spriteRenderer;
     private PlayerInput playerInput;
-    private InputAction moveAction;
-    
-    private bool facingRight = true;
-    private float movimiento; 
 
-    void Start()
+    private InputAction moveAction;
+    private InputAction pauseAction;
+
+    private bool facingRight = true;
+    private float movimiento;
+
+    private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        // Buscamos el componente Player Input en el personaje
         playerInput = GetComponent<PlayerInput>();
 
-        if (playerInput != null)
+        if (playerInput == null)
         {
-            // Buscamos la acción "Move" dentro del mapa actual
-            moveAction = playerInput.actions.FindAction("Move");
+            Debug.LogError("¡Falta el componente PlayerInput!");
+            return;
         }
-        else
-        {
-            Debug.LogError("¡Falta el componente Player Input en este objeto!");
-        }
+
+        moveAction = playerInput.actions.FindAction("Move");
+        pauseAction = playerInput.actions.FindAction("Pause");
+
+        if (moveAction == null)
+            Debug.LogError("No se encontró la acción 'Move'.");
+
+        if (pauseAction == null)
+            Debug.LogError("No se encontró la acción 'Pause'.");
     }
 
-    void Update()
+    private void Update()
     {
-        // Si encontramos la acción, leemos directamente su valor en X
+        // Movimiento
         if (moveAction != null)
         {
             movimiento = moveAction.ReadValue<Vector2>().x;
+
+            transform.position +=
+                Vector3.right *
+                movimiento *
+                speed *
+                Time.deltaTime;
         }
 
-        // Movimiento horizontal
-        transform.position += Vector3.right * movimiento * speed * Time.deltaTime;
-
-        // Giro visual 
+        // Animación de flip según dirección
         if (spriteRenderer != null && movimiento != 0)
         {
             if (movimiento < 0 && facingRight)
@@ -55,6 +62,13 @@ public class PlayerControlet : MonoBehaviour
                 spriteRenderer.flipX = false;
                 facingRight = true;
             }
+        }
+
+        // Pausa
+        if (pauseAction != null &&
+            pauseAction.WasPressedThisFrame())
+        {
+            GameManager.Instance.TogglePause();
         }
     }
 }
