@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerControlet : MonoBehaviour
 {
     [SerializeField] private float speed = 20f;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform bulletSpawnPoint;
+    [SerializeField] private float danioBala = 10f;
 
     private SpriteRenderer spriteRenderer;
     private PlayerInput playerInput;
@@ -33,6 +36,9 @@ public class PlayerControlet : MonoBehaviour
 
         if (pauseAction == null)
             Debug.LogError("No se encontró la acción 'Pause'.");
+
+        if (bulletPrefab == null)
+            Debug.LogError("No se asignó el prefab de la bala.");
     }
 
     private void Update()
@@ -69,6 +75,38 @@ public class PlayerControlet : MonoBehaviour
             pauseAction.WasPressedThisFrame())
         {
             GameManager.Instance.TogglePause();
+        }
+
+        // Disparo
+        if (Keyboard.current != null &&
+            Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            Disparar();
+        }
+    }
+
+    private void Disparar()
+    {
+        if (bulletPrefab == null) return;
+
+        Vector3 spawnPos = bulletSpawnPoint != null
+            ? bulletSpawnPoint.position
+            : transform.position;
+
+        Quaternion rotacion = facingRight
+            ? Quaternion.identity
+            : Quaternion.Euler(0f, 180f, 0f);
+
+        GameObject bullet = Instantiate(bulletPrefab, spawnPos, rotacion);
+
+        Bala bala = bullet.GetComponent<Bala>();
+        if (bala != null)
+        {
+            bala.Inicializar(danioBala);
+        }
+        else
+        {
+            Debug.LogWarning("El prefab de bala no tiene el script Bala.");
         }
     }
 }

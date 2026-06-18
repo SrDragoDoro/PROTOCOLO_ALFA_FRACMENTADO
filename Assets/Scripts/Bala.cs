@@ -2,15 +2,34 @@ using UnityEngine;
 
 public class Bala : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private float velocidad = 15f;
+    [SerializeField] private float tiempoVida = 1f;
+    [SerializeField] private float daño = 5f;
+
+    public void Inicializar(float nuevoDaño)
     {
-        Destroy(gameObject, 3);
+        daño = nuevoDaño;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        transform.position += transform.up * 10 * Time.deltaTime;
+        Destroy(gameObject, tiempoVida);
+    }
+
+    private void Update()
+    {
+        transform.Translate(Vector2.right * velocidad * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Enemy"))
+            return;
+
+ 
+
+        Debug.Log("Daño aplicado: " + daño);
+
+        Destroy(gameObject);
     }
 }
