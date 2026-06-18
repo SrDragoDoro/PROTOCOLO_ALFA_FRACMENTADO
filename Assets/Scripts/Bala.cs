@@ -23,12 +23,20 @@ public class Bala : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Bala chocó con: " + other.gameObject.name + " | Tag: " + other.tag);
+
         if (!other.CompareTag("Enemy"))
             return;
 
- 
-
-        Debug.Log("Daño aplicado: " + daño);
+        IDamageable danable = other.GetComponent<IDamageable>();
+        if (danable != null)
+        {
+            danable.RecibirDanio(daño);
+        }
+        else
+        {
+            Debug.LogWarning("El objetivo no tiene un componente IDamageable.");
+        }
 
         Destroy(gameObject);
     }
