@@ -1,12 +1,13 @@
 using UnityEngine;
-public class Enemy : MonoBehaviour
+
+public class Enemy : MonoBehaviour, IDamageable
 {
     [Header("Vida del enemigo")]
     [SerializeField] private float vidaMaxima = 30f;
     private float vidaActual;
 
     [Header("Movimiento")]
-    [SerializeField] private float velocidad = 2f;
+    [SerializeField] private float velocidad = 3f;
 
     [Header("Detección de amenazas")]
     [SerializeField] private float radioDeteccion = 4f;
@@ -19,13 +20,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float rangoAtaque = 1f;
     [SerializeField] private float tiempoEntreAtaques = 1f;
 
-    private Transform objetivoCasa;     // La casa a la que siempre intentará llegar si no hay amenazas
-    private Transform objetivoActual; // A quién está atacando o siguiendo ahora mismo
+    private Transform objetivoCasa;
+    private Transform objetivoActual;
     private float temporizadorAtaque = 0f;
+
+    private Animator animator;
 
     private void Start()
     {
         vidaActual = vidaMaxima;
+
+        animator = GetComponent<Animator>();
 
         GameObject casa = GameObject.FindGameObjectWithTag(tagCasa);
         if (casa != null)
@@ -53,13 +58,22 @@ public class Enemy : MonoBehaviour
             objetivoActual = objetivoCasa;
         }
 
-        if (objetivoActual == null) return;
+        if (objetivoActual == null)
+        {
+            if (animator != null)
+                animator.SetBool("Attack", false);
+
+            return;
+        }
 
         float distancia = Vector2.Distance(transform.position, objetivoActual.position);
 
         if (distancia <= rangoAtaque)
         {
-            // Está en rango de ataque: se queda quieto y golpea
+            // Está en rango de ataque
+            if (animator != null)
+                animator.SetBool("Attack", true);
+
             if (temporizadorAtaque <= 0f)
             {
                 Atacar(objetivoActual);
@@ -68,7 +82,10 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            // Aún no está en rango: se mueve hacia el objetivo
+            // No está atacando, se mueve hacia el objetivo
+            if (animator != null)
+                animator.SetBool("Attack", false);
+
             MoverHacia(objetivoActual.position);
         }
     }
@@ -85,6 +102,7 @@ public class Enemy : MonoBehaviour
             if (col.CompareTag(tagTorreta) || col.CompareTag(tagPlayer))
             {
                 float distancia = Vector2.Distance(transform.position, col.transform.position);
+
                 if (distancia < distanciaMinima)
                 {
                     distanciaMinima = distancia;
@@ -98,12 +116,17 @@ public class Enemy : MonoBehaviour
 
     private void MoverHacia(Vector3 destino)
     {
-        transform.position = Vector3.MoveTowards(transform.position, destino, velocidad * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            destino,
+            velocidad * Time.deltaTime
+        );
     }
 
     private void Atacar(Transform objetivo)
     {
         IDamageable danable = objetivo.GetComponent<IDamageable>();
+
         if (danable != null)
         {
             danable.RecibirDanio(danioAtaque);
@@ -117,6 +140,7 @@ public class Enemy : MonoBehaviour
     public void RecibirDanio(float cantidad)
     {
         vidaActual -= cantidad;
+
         if (vidaActual <= 0f)
         {
             Morir();
@@ -128,10 +152,9 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Dibuja el radio de detección en el Editor para verlo mientras lo ajustas
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;    
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, radioDeteccion);
 
         Gizmos.color = Color.red;
@@ -139,11 +162,6 @@ public class Enemy : MonoBehaviour
     }
 }
 
-/// <summary>
-/// Interfaz simple para que cualquier objeto (Casa, Torreta, Player) pueda recibir daño.
-/// Cualquier script de vida que ya tengas o vayas a crear debe implementar este método.
-/// Ejemplo: public class VidaJugador : MonoBehaviour, IDamageable { ... }
-/// </summary>
 public interface IDamageable
 {
     void RecibirDanio(float cantidad);

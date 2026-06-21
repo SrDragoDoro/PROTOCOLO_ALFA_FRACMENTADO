@@ -1,17 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class MenuSystem : MonoBehaviour
 {
-
-    public void jugar()
+    public void CambiarEscena(string EscenaJuego)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(EscenaJuego);
     }
 
- 
     public void Salir()
     {
-        Debug.Log("Menu System   EXIT ");
+        Debug.Log("Menu System EXIT");
         Application.Quit();
     }
 }
