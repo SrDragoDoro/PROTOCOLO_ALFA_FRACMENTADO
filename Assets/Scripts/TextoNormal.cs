@@ -2,19 +2,15 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 
-public class TextoAlternadoTMP : MonoBehaviour
+public class MostrarTextoTMP : MonoBehaviour
 {
     [Header("Texto TMP")]
     [SerializeField] private TextMeshProUGUI textoMensaje;
 
-    [Header("Mensajes")]
-    [SerializeField] private string mensaje1 = "Primer mensaje";
-    [SerializeField] private string mensaje2 = "Segundo mensaje";
-
-    [Header("Tiempo visible")]
+    [Header("Configuración")]
+    [SerializeField] private string mensaje = "Hola, este es el mensaje";
     [SerializeField] private float tiempoVisible = 1f;
 
-    private int contadorClicks = 0;
     private Coroutine rutinaTexto;
 
     private void Start()
@@ -23,24 +19,15 @@ public class TextoAlternadoTMP : MonoBehaviour
             textoMensaje.gameObject.SetActive(false);
     }
 
-    public void MostrarTextoAlternado()
+    public void MostrarTexto()
     {
-        contadorClicks++;
-
         if (rutinaTexto != null)
             StopCoroutine(rutinaTexto);
 
-        if (contadorClicks % 2 == 1)
-        {
-            rutinaTexto = StartCoroutine(MostrarTextoTemporal(mensaje1));
-        }
-        else
-        {
-            rutinaTexto = StartCoroutine(MostrarTextoTemporal(mensaje2));
-        }
+        rutinaTexto = StartCoroutine(MostrarTextoTemporal());
     }
 
-    private IEnumerator MostrarTextoTemporal(string mensaje)
+    private IEnumerator MostrarTextoTemporal()
     {
         textoMensaje.text = mensaje;
         textoMensaje.gameObject.SetActive(true);
