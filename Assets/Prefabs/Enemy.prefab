@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   vidaMaxima: 30
-  velocidad: 2
+  velocidad: 5
   radioDeteccion: 4
   tagTorreta: Torreta
   tagPlayer: Player
