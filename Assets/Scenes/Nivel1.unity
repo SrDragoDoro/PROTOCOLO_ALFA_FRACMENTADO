@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 470880281}
   - component: {fileID: 470880282}
   m_Layer: 0
-  m_Name: Planform
+  m_Name: PointTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
