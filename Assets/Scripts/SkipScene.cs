@@ -17,7 +17,7 @@ public class SkipScene : MonoBehaviour
     private float holdTimer = 0f;
     private bool isSkipping = false;
 
-    private void Start()
+    private void Start() // Inicializa la imagen de carga al estado inicial
     {
         holdTimer = 0f;
 
@@ -27,7 +27,7 @@ public class SkipScene : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void Update() // Maneja la lógica de salto de escena y la animación de carga
     {
         if (Input.GetKey(skipKey))
         {
@@ -46,8 +46,7 @@ public class SkipScene : MonoBehaviour
             ResetLoadingAnimation();
         }
     }
-
-    private void UpdateLoadingAnimation()
+    private void UpdateLoadingAnimation() // Actualiza la imagen de carga según el progreso de carga pero no funciona correctamente
     {
         if (skipImage == null || loadingFrames.Length == 0) return;
 
@@ -61,16 +60,14 @@ public class SkipScene : MonoBehaviour
 
         skipImage.sprite = loadingFrames[frameIndex];
     }
-
-    private void ResetLoadingAnimation()
+    private void ResetLoadingAnimation() // Reinicia la imagen de carga al estado inicial pero naaaa esta fallando tmb
     {
         if (skipImage != null && loadingFrames.Length > 0)
         {
             skipImage.sprite = loadingFrames[0];
         }
     }
-
-    private void GoToNextScene()
+    private void GoToNextScene() // Carga la siguiente escena cuando se completa el tiempo de espera lo unico que me funciona bien
     {
         SceneManager.LoadScene(nextSceneName);
     }
