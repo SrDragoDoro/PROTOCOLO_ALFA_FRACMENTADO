@@ -107,14 +107,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d1127fbf1e50a4cb715fb15d66fee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  vidaMaxima: 30
-  velocidad: 2
-  radioDeteccion: 4
+  vidaMaxima: 100
+  velocidad: 15
+  radioDeteccion: 8
   tagTorreta: Torreta
   tagPlayer: Player
   tagCasa: Casa
   danioAtaque: 10
-  rangoAtaque: 1
+  rangoAtaque: 10
   tiempoEntreAtaques: 1
 --- !u!61 &2207079453277269498
 BoxCollider2D:

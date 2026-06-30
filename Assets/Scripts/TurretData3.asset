@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf646ccdecdf4946abb6fbd5b5180a2, type: 3}
   m_Name: TurretData3
   m_EditorClassIdentifier: Assembly-CSharp::TurretData
-  TurretName: 
-  BulletDamage: 0
-  BulletSpeed: 0
-  Cadencia: 0
-  TurrentRange: 0
+  TurretName: GUN3
+  BulletDamage: 50
+  BulletSpeed: 10
+  Cadencia: 1.5
+  TurrentRange: 10
