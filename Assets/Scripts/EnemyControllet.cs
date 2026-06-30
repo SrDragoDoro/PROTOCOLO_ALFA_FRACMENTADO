@@ -1,213 +1,190 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!1 &1514435649925909261
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8119604252223247558}
-  - component: {fileID: 8461844126558204453}
-  - component: {fileID: 241815555563291935}
-  - component: {fileID: 2207079453277269498}
-  - component: {fileID: 26691486341641429}
-  - component: {fileID: -7194389611277968323}
-  m_Layer: 0
-  m_Name: Enemy
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8119604252223247558
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514435649925909261}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.00011162093, w: 1}
-  m_LocalPosition: {x: 109.76271, y: 10.756743, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8461844126558204453
-SpriteRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514435649925909261}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 9066e6a037efb0d4aab92b068bd6900a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.46}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
---- !u!114 &241815555563291935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514435649925909261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52d1127fbf1e50a4cb715fb15d66fee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  vidaMaxima: 30
-  velocidad: 5
-  radioDeteccion: 4
-  tagTorreta: Torreta
-  tagPlayer: Player
-  tagCasa: Casa
-  danioAtaque: 10
-  rangoAtaque: 1
-  tiempoEntreAtaques: 1
---- !u!61 &2207079453277269498
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514435649925909261}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 5.75}
-    newSize: {x: 0.2, y: 0.46}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 2.5, y: 5.75}
-  m_EdgeRadius: 0
---- !u!50 &26691486341641429
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514435649925909261}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!95 &-7194389611277968323
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514435649925909261}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8eca3ca932e5de74b904feefb445390c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+using UnityEngine;
+
+public class EnemyControllet : MonoBehaviour, IDamageable
+{
+    [Header("Vida del enemigo")]
+    [SerializeField] private float vidaMaxima = 30f;
+    private float vidaActual;
+
+    [Header("Movimiento")]
+    [SerializeField] private float velocidad = 3f;
+
+    [Header("Detección de amenazas")]
+    [SerializeField] private float radioDeteccion = 4f;
+    [SerializeField] private string tagTorreta = "Torreta";
+    [SerializeField] private string tagPlayer = "Player";
+    [SerializeField] private string tagCasa = "Casa";
+
+    [Header("Ataque cuerpo a cuerpo")]
+    [SerializeField] private float danioAtaque = 10f;
+    [SerializeField] private float rangoAtaque = 1f;
+    [SerializeField] private float tiempoEntreAtaques = 1f;
+
+    private Transform objetivoCasa;
+    private Transform objetivoActual;
+    private float temporizadorAtaque = 0f;
+
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
+    private void Start()
+    {
+        vidaActual = vidaMaxima;
+
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        GameObject casa = GameObject.FindGameObjectWithTag(tagCasa);
+        if (casa != null)
+        {
+            objetivoCasa = casa.transform;
+        }
+        else
+        {
+            Debug.LogWarning("[Enemy] No se encontró ningún objeto con tag 'Casa' en la escena.");
+        }
+    }
+
+    private void Update()
+    {
+        temporizadorAtaque -= Time.deltaTime;
+
+        Transform amenaza = BuscarAmenazaMasCercana();
+
+        if (amenaza != null)
+        {
+            objetivoActual = amenaza;
+        }
+        else
+        {
+            objetivoActual = objetivoCasa;
+
+            // Solo mira hacia la Casa cuando ese es su objetivo actual
+            if (objetivoCasa != null)
+            {
+                MirarHacia(objetivoCasa.position);
+            }
+        }
+
+        if (objetivoActual == null)
+        {
+            if (animator != null)
+                animator.SetBool("Attack", false);
+
+            return;
+        }
+
+        float distancia = Vector2.Distance(transform.position, objetivoActual.position);
+
+        if (distancia <= rangoAtaque)
+        {
+            if (animator != null)
+                animator.SetBool("Attack", true);
+
+            if (temporizadorAtaque <= 0f)
+            {
+                Atacar(objetivoActual);
+                temporizadorAtaque = tiempoEntreAtaques;
+            }
+        }
+        else
+        {
+            if (animator != null)
+                animator.SetBool("Attack", false);
+
+            MoverHacia(objetivoActual.position);
+        }
+    }
+
+    private void MirarHacia(Vector3 objetivo)
+    {
+        if (spriteRenderer == null) return;
+
+        float direccion = objetivo.x - transform.position.x;
+
+        if (direccion > 0f)
+        {
+            spriteRenderer.flipX = false; // mirando a la derecha
+        }
+        else if (direccion < 0f)
+        {
+            spriteRenderer.flipX = true; // mirando a la izquierda
+        }
+    }
+
+    private Transform BuscarAmenazaMasCercana()
+    {
+        Collider2D[] resultados = Physics2D.OverlapCircleAll(transform.position, radioDeteccion);
+
+        Transform masCercano = null;
+        float distanciaMinima = Mathf.Infinity;
+
+        foreach (Collider2D col in resultados)
+        {
+            if (col.CompareTag(tagTorreta) || col.CompareTag(tagPlayer))
+            {
+                float distancia = Vector2.Distance(transform.position, col.transform.position);
+
+                if (distancia < distanciaMinima)
+                {
+                    distanciaMinima = distancia;
+                    masCercano = col.transform;
+                }
+            }
+        }
+
+        return masCercano;
+    }
+
+    private void MoverHacia(Vector3 destino)
+    {
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            destino,
+            velocidad * Time.deltaTime
+        );
+    }
+
+    private void Atacar(Transform objetivo)
+    {
+        IDamageable danable = objetivo.GetComponent<IDamageable>();
+
+        if (danable != null)
+        {
+            danable.RecibirDanio(danioAtaque);
+        }
+        else
+        {
+            Debug.LogWarning("[Enemy] El objetivo '" + objetivo.name + "' no tiene un componente IDamageable.");
+        }
+    }
+
+    public void RecibirDanio(float cantidad)
+    {
+        vidaActual -= cantidad;
+
+        if (vidaActual <= 0f)
+        {
+            Morir();
+        }
+    }
+
+    private void Morir()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, radioDeteccion);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, rangoAtaque);
+    }
+}
+
+public interface IDamageable
+{
+    void RecibirDanio(float cantidad);
+}

@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dfed57983f6bef49bc17e88b56d70a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxMovement
-  parallaxSpeed: 0.01
+  parallaxSpeed: 0.07
 --- !u!1 &242241010
 GameObject:
   m_ObjectHideFlags: 0
