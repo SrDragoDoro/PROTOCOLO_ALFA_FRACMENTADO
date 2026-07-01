@@ -3,10 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerControlet : MonoBehaviour
 {
-    [Header("Movimiento")]
     [SerializeField] private float speed = 20f;
-
-    [Header("Disparo")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private float danioBala = 10f;
@@ -16,87 +13,81 @@ public class PlayerControlet : MonoBehaviour
 
     private InputAction moveAction;
     private InputAction pauseAction;
-    private InputAction shootAction;
 
-    private float movimiento;
     private bool facingRight = true;
+    private float movimiento;
 
-    private void Awake()
+    private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerInput = GetComponent<PlayerInput>();
 
         if (playerInput == null)
         {
-            Debug.LogError("Falta el componente PlayerInput.");
-            enabled = false;
+            Debug.LogError("¡Falta el componente PlayerInput!");
             return;
         }
 
-        moveAction = playerInput.actions["Move"];
-        pauseAction = playerInput.actions["Pause"];
-        shootAction = playerInput.actions["Shoot"]; // Crea esta acción o cambia el nombre
-    }
+        moveAction = playerInput.actions.FindAction("Move");
+        pauseAction = playerInput.actions.FindAction("Pause");
 
-    private void OnEnable()
-    {
-        moveAction.performed += OnMove;
-        moveAction.canceled += OnMove;
+        if (moveAction == null)
+            Debug.LogError("No se encontró la acción 'Move'.");
 
-        if (pauseAction != null)
-            pauseAction.performed += OnPause;
+        if (pauseAction == null)
+            Debug.LogError("No se encontró la acción 'Pause'.");
 
-        if (shootAction != null)
-            shootAction.performed += OnShoot;
-    }
-
-    private void OnDisable()
-    {
-        moveAction.performed -= OnMove;
-        moveAction.canceled -= OnMove;
-
-        if (pauseAction != null)
-            pauseAction.performed -= OnPause;
-
-        if (shootAction != null)
-            shootAction.performed -= OnShoot;
+        if (bulletPrefab == null)
+            Debug.LogError("No se asignó el prefab de la bala.");
     }
 
     private void Update()
     {
-        transform.position += Vector3.right * movimiento * speed * Time.deltaTime;
-
-        if (movimiento < 0 && facingRight)
+        // Movimiento
+        if (moveAction != null)
         {
-            spriteRenderer.flipX = true;
-            facingRight = false;
+            movimiento = moveAction.ReadValue<Vector2>().x;
+
+            transform.position +=
+                Vector3.right *
+                movimiento *
+                speed *
+                Time.deltaTime;
         }
-        else if (movimiento > 0 && !facingRight)
+
+        // Animación de flip según dirección
+        if (spriteRenderer != null && movimiento != 0)
         {
-            spriteRenderer.flipX = false;
-            facingRight = true;
+            if (movimiento < 0 && facingRight)
+            {
+                spriteRenderer.flipX = true;
+                facingRight = false;
+            }
+            else if (movimiento > 0 && !facingRight)
+            {
+                spriteRenderer.flipX = false;
+                facingRight = true;
+            }
         }
-    }
 
-    private void OnMove(InputAction.CallbackContext ctx)
-    {
-        movimiento = ctx.ReadValue<Vector2>().x;
-    }
+        // Pausa
+        if (pauseAction != null &&
+            pauseAction.WasPressedThisFrame())
+        {
+            GameManager.Instance.TogglePause();
+        }
 
-    private void OnPause(InputAction.CallbackContext ctx)
-    {
-        GameManager.Instance.TogglePause();
-    }
-
-    private void OnShoot(InputAction.CallbackContext ctx)
-    {
-        Disparar();
+        // Disparo
+        if (Keyboard.current != null &&
+            Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            Disparar();
+        }
     }
 
     private void Disparar()
     {
-        if (bulletPrefab == null)
-            return;
+        if (bulletPrefab == null) return;
 
         Vector3 spawnPos = bulletSpawnPoint != null
             ? bulletSpawnPoint.position
@@ -109,8 +100,13 @@ public class PlayerControlet : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, spawnPos, rotacion);
 
         Bala bala = bullet.GetComponent<Bala>();
-
         if (bala != null)
+        {
             bala.Inicializar(danioBala);
+        }
+        else
+        {
+            Debug.LogWarning("El prefab de bala no tiene el script Bala.");
+        }
     }
 }
