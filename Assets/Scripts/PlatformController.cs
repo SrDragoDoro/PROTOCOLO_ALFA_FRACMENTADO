@@ -9,10 +9,11 @@ public class PlatformController : MonoBehaviour
 
     public List<TurretData> Opciones;
 
-
+    public Transform SpawnPoint;
     public TorretaBase TurretPrefab;
 
     public TorretaBase CurrentTorre = null;
+
     void Start()
     {
         ToolTip.SetActive(false);
@@ -45,8 +46,9 @@ public class PlatformController : MonoBehaviour
 
     public void CreateTurret(int pos)
     {
-       TorretaBase turret =  Instantiate(TurretPrefab, transform.position, Quaternion.identity);
+       TorretaBase turret =  Instantiate(TurretPrefab, SpawnPoint.position, Quaternion.identity, SpawnPoint.transform);
         CurrentTorre= turret;
         CurrentTorre.Set(Opciones[pos]);
+        Debug.Log("___");
     }
 }

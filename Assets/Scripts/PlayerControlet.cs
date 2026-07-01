@@ -1,12 +1,26 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
-public class PlayerControlet : MonoBehaviour
+public class PlayerControlet : MonoBehaviour, IDamageable
 {
+    [Header("Movimiento")]
     [SerializeField] private float speed = 20f;
+
+    [Header("Disparo")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private float danioBala = 10f;
+
+    [Header("Vida")]
+    [SerializeField] private float vidaMaxima = 50f;
+    private float vidaActual;
+
+    [Header("Derrota")]
+    [SerializeField] private GameObject imagenDerrota;
+    [SerializeField] private int escenaMenuIndex = 1;
+    [SerializeField] private float tiempoAntesDeMenu = 1f;
 
     private SpriteRenderer spriteRenderer;
     private PlayerInput playerInput;
@@ -16,9 +30,15 @@ public class PlayerControlet : MonoBehaviour
 
     private bool facingRight = true;
     private float movimiento;
+    private bool muerto = false;
 
     private void Start()
     {
+        vidaActual = vidaMaxima;
+
+        if (imagenDerrota != null)
+            imagenDerrota.SetActive(false);
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerInput = GetComponent<PlayerInput>();
 
@@ -43,7 +63,8 @@ public class PlayerControlet : MonoBehaviour
 
     private void Update()
     {
-        // Movimiento
+        if (muerto) return;
+
         if (moveAction != null)
         {
             movimiento = moveAction.ReadValue<Vector2>().x;
@@ -55,7 +76,6 @@ public class PlayerControlet : MonoBehaviour
                 Time.deltaTime;
         }
 
-        // Animación de flip según dirección
         if (spriteRenderer != null && movimiento != 0)
         {
             if (movimiento < 0 && facingRight)
@@ -70,16 +90,12 @@ public class PlayerControlet : MonoBehaviour
             }
         }
 
-        // Pausa
-        if (pauseAction != null &&
-            pauseAction.WasPressedThisFrame())
+        if (pauseAction != null && pauseAction.WasPressedThisFrame())
         {
             GameManager.Instance.TogglePause();
         }
 
-        // Disparo
-        if (Keyboard.current != null &&
-            Keyboard.current.cKey.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.cKey.wasPressedThisFrame)
         {
             Disparar();
         }
@@ -108,5 +124,42 @@ public class PlayerControlet : MonoBehaviour
         {
             Debug.LogWarning("El prefab de bala no tiene el script Bala.");
         }
+    }
+
+    public void RecibirDanio(float cantidad)
+    {
+        if (muerto) return;
+
+        vidaActual -= cantidad;
+
+        Debug.Log("Player recibió daño: " + cantidad + " | Vida actual: " + vidaActual);
+
+        if (vidaActual <= 0f)
+        {
+            Morir();
+        }
+    }
+
+    private void Morir()
+    {
+        muerto = true;
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.CurrentState = GameManager.GameState.Lose;
+
+        if (imagenDerrota != null)
+            imagenDerrota.SetActive(true);
+
+        Time.timeScale = 0f;
+
+        StartCoroutine(VolverAlMenu());
+    }
+
+    private IEnumerator VolverAlMenu()
+    {
+        yield return new WaitForSecondsRealtime(tiempoAntesDeMenu);
+
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(escenaMenuIndex);
     }
 }

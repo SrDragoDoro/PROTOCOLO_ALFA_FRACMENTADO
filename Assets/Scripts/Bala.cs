@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bala : MonoBehaviour
 {
-    [SerializeField] private float velocidad = 15f;
+    [SerializeField] private float velocidad = 30f;
     [SerializeField] private float tiempoVida = 1f;
     [SerializeField] private float daño = 5f;
 
@@ -18,7 +18,9 @@ public class Bala : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector2.right * velocidad * Time.deltaTime);
+        //ransform.Translate(Vector2.right * velocidad * Time.deltaTime);
+
+        transform.position += transform.right * velocidad * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -53,51 +53,6 @@ public class TorretaBase : MonoBehaviour
         DetectEnemies();
     }
 
-    private void ConfigurarTorreta()
-    {
-        switch (tipoTorreta)
-        {
-            case TipoTorreta.None:
-                alcance = 0f;
-                daño = 0f;
-                tiempoEntreDisparos = 9999f;
-                break;
-
-            case TipoTorreta.Gun:
-                alcance = 8f;
-                daño = 10f;
-                tiempoEntreDisparos = 0.2f;
-                break;
-
-            case TipoTorreta.Franco:
-                alcance = 20f;
-                daño = 80f;
-                tiempoEntreDisparos = 2f;
-                break;
-
-            case TipoTorreta.Canon:
-                alcance = 12f;
-                daño = 40f;
-                tiempoEntreDisparos = 1f;
-                break;
-        }
-    }
-
-    private void Disparar()
-    {
-        GameObject nuevaBala = Instantiate(
-            balaPrefab,
-            puntoDisparo.position,
-            puntoDisparo.rotation
-        );
-
-        Bala bala = nuevaBala.GetComponent<Bala>();
-
-        if (bala != null)
-        {
-            // bala.Inicializar(daño);
-        }
-    }
 
 
     public void ShootEnemy()
@@ -115,8 +70,8 @@ public class TorretaBase : MonoBehaviour
         if (Target != null)
         {
             Vector3 dirShoot = (Target.transform.position - transform.localPosition).normalized;
-            dirShoot.y = 0;
-            transform.up = dirShoot;
+            //dirShoot.y = 0;
+            //transform.right = dirShoot;
 
 
 
@@ -137,7 +92,7 @@ public class TorretaBase : MonoBehaviour
 
         GameObject bullet = Instantiate(balaPrefab, transform.position, Quaternion.identity);
 
-        bullet.transform.up = dirShoot;
+        bullet.transform.right = dirShoot;
     }
 
     public void DetectEnemies()
