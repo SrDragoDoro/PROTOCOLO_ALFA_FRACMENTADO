@@ -2,131 +2,76 @@ using UnityEngine;
 
 public class TorretaBase : MonoBehaviour
 {
-    private enum TipoTorreta
-    {
-        None,
-        Gun,
-        Franco,
-        Canon
-    }
-
-
-    [SerializeField] private TipoTorreta tipoTorreta;
     [SerializeField] private GameObject balaPrefab;
     [SerializeField] private Transform puntoDisparo;
-    [SerializeField] private float alcance;
-    [SerializeField] private float daño;
-    [SerializeField] private float tiempoEntreDisparos;
+    [SerializeField] private float alcance = 8f;
+    [SerializeField] private float daño = 10f;
+    [SerializeField] private float tiempoEntreDisparos = 0.5f;
     private float temporizador;
 
-    private SpriteRenderer spriteTorsoTorrta;
-    public GameObject Target;
+    private GameObject target;
 
-    private void Awake()
-    {
-        //ConfigurarTorreta();
-    }
     public void Set(TurretData data)
     {
         alcance = data.TurrentRange;
-        daño = data.TurrentRange;
-        tiempoEntreDisparos = data.TurrentRange;
+        daño = data.BulletDamage;
+        tiempoEntreDisparos = data.Cadencia;
     }
-    /* private void OnValidate()
-     {
-         ConfigurarTorreta();
-     }*/
 
-    private void Update()
-    {
-        /* temporizador += Time.deltaTime;
-
-         if (temporizador >= tiempoEntreDisparos)
-         {
-             Disparar();
-             temporizador = 0f;
-         }*/
-    }
     private void FixedUpdate()
     {
-        ShootEnemy();
-        DetectEnemies();
+        BuscarTarget();
+        Disparar();
     }
 
-
-
-    public void ShootEnemy()
+    private void BuscarTarget()
     {
-        if (Target == null) return;
-
-        if (Vector3.Distance(Target.transform.position, transform.position) > alcance)
-        {
-            Target = null;
+        if (target != null &&
+            target.activeInHierarchy &&
+            Vector3.Distance(transform.position, target.transform.position) <= alcance)
             return;
-        }
 
+        target = null;
+        float minDist = Mathf.Infinity;
 
-
-        if (Target != null)
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, alcance))
         {
-            Vector3 dirShoot = (Target.transform.position - transform.localPosition).normalized;
-            //dirShoot.y = 0;
-            //transform.right = dirShoot;
+            if (!col.CompareTag("Enemy")) continue;
 
-
-
-            temporizador += Time.deltaTime;
-
-            if (temporizador >= tiempoEntreDisparos)
+            float dist = Vector3.Distance(transform.position, col.transform.position);
+            if (dist < minDist)
             {
-                ShootToShoot();
-                temporizador = 0f;
-            }
-
-
-        }
-    }
-    public void ShootToShoot()
-    {
-        Vector3 dirShoot = (Target.transform.position - transform.position).normalized;
-
-        GameObject bullet = Instantiate(balaPrefab, transform.position, Quaternion.identity);
-
-        bullet.transform.right = dirShoot;
-    }
-
-    public void DetectEnemies()
-    {
-        if (Target != null) return;
-
-
-        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, alcance);
-
-        GameObject enemy = null;
-        float minDistance = 0;
-
-        foreach (Collider2D coll in colls)
-        {
-            if (coll.CompareTag("Enemy"))
-            {
-                if (enemy == null)
-                {
-                    enemy = coll.gameObject;
-                    minDistance = Vector3.Distance(enemy.transform.position, transform.position);
-                }
-                else
-                {
-                    if (Vector3.Distance(coll.gameObject.transform.position, transform.position) < minDistance)
-                    {
-                        enemy = coll.gameObject;
-                        minDistance = Vector3.Distance(enemy.transform.position, transform.position);
-                    }
-
-                }
+                minDist = dist;
+                target = col.gameObject;
             }
         }
-        Target = enemy;
     }
+
+    private void Disparar()
+    {
+        if (target == null || balaPrefab == null) return;
+
+        Vector3 dir = (target.transform.position - transform.position).normalized;
+        float angulo = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0f, 0f, angulo);
+
+        temporizador += Time.fixedDeltaTime;
+        if (temporizador < tiempoEntreDisparos) return;
+        temporizador = 0f;
+
+        Transform spawn = puntoDisparo != null ? puntoDisparo : transform;
+        GameObject bulletObj = Instantiate(
+            balaPrefab,
+            spawn.position,
+            Quaternion.Euler(0f, 0f, angulo)
+        );
+
+        Bala bala = bulletObj.GetComponent<Bala>();
+        if (bala != null)
+            bala.Inicializar(daño);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
