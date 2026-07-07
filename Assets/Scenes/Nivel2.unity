@@ -4747,6 +4747,71 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 494619051}
+--- !u!1001 &1574642047
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 265733109068687764, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 406.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 265733109068687764, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 265733109068687764, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 265733109068687764, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 265733109068687764, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 265733109068687764, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 265733109068687764, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 265733109068687764, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 265733109068687764, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 265733109068687764, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713778844703536219, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: vidaMaxima
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713778844703536219, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: puntosVictoria
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7173773789710995140, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: m_Name
+      value: EnemyBoss (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
 --- !u!1 &1602462260
 GameObject:
   m_ObjectHideFlags: 0
@@ -6338,6 +6403,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4713778844703536219, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: vidaMaxima
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713778844703536219, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
+      propertyPath: puntosVictoria
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7173773789710995140, guid: 50743380c1fc09a4b83e9c36ffdeedad, type: 3}
       propertyPath: m_Name
       value: EnemyBoss
@@ -6369,5 +6442,6 @@ SceneRoots:
   - {fileID: 1485532726}
   - {fileID: 1627798961}
   - {fileID: 2952446432422707882}
+  - {fileID: 1574642047}
   - {fileID: 2101565657}
   - {fileID: 776273279}
