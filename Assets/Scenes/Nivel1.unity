@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotonTorreta
   cartel: {fileID: 1476567102}
-  prefabCuerpo: {fileID: 2315102426981784371, guid: b6c52edfc6538984bafc20be1d8502d4, type: 3}
-  prefabCabeza: {fileID: 2314797111861541111, guid: 5c862f62edef8f5409528a3819b63031, type: 3}
+  prefabCuerpo: {fileID: 2315102426981784371, guid: 482ee0ab144fdb2458d227b6681f6cfa, type: 3}
+  prefabCabeza: {fileID: 2314797111861541111, guid: b3093dbd13e371f4b8e2b88209aa6060, type: 3}
   datos: {fileID: 11400000, guid: ab0fa1f93f190fb468d4aaf60cc52695, type: 2}
 --- !u!114 &68087840
 MonoBehaviour:
@@ -1345,8 +1345,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotonTorreta
   cartel: {fileID: 804649029}
-  prefabCuerpo: {fileID: 2315102426981784371, guid: b6c52edfc6538984bafc20be1d8502d4, type: 3}
-  prefabCabeza: {fileID: 2314797111861541111, guid: 5c862f62edef8f5409528a3819b63031, type: 3}
+  prefabCuerpo: {fileID: 2315102426981784371, guid: 482ee0ab144fdb2458d227b6681f6cfa, type: 3}
+  prefabCabeza: {fileID: 2314797111861541111, guid: b3093dbd13e371f4b8e2b88209aa6060, type: 3}
   datos: {fileID: 11400000, guid: df473cb29cfeb1c40893c4eb230a99c3, type: 2}
 --- !u!114 &603336958
 MonoBehaviour:
@@ -2135,8 +2135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotonTorreta
   cartel: {fileID: 1476567102}
-  prefabCuerpo: {fileID: 2315102426981784371, guid: b6c52edfc6538984bafc20be1d8502d4, type: 3}
-  prefabCabeza: {fileID: 2314797111861541111, guid: 5c862f62edef8f5409528a3819b63031, type: 3}
+  prefabCuerpo: {fileID: 2315102426981784371, guid: 482ee0ab144fdb2458d227b6681f6cfa, type: 3}
+  prefabCabeza: {fileID: 2314797111861541111, guid: b3093dbd13e371f4b8e2b88209aa6060, type: 3}
   datos: {fileID: 11400000, guid: df473cb29cfeb1c40893c4eb230a99c3, type: 2}
 --- !u!114 &865901938
 MonoBehaviour:
@@ -5249,8 +5249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotonTorreta
   cartel: {fileID: 804649029}
-  prefabCuerpo: {fileID: 2315102426981784371, guid: b6c52edfc6538984bafc20be1d8502d4, type: 3}
-  prefabCabeza: {fileID: 2314797111861541111, guid: 5c862f62edef8f5409528a3819b63031, type: 3}
+  prefabCuerpo: {fileID: 2315102426981784371, guid: 482ee0ab144fdb2458d227b6681f6cfa, type: 3}
+  prefabCabeza: {fileID: 2314797111861541111, guid: b3093dbd13e371f4b8e2b88209aa6060, type: 3}
   datos: {fileID: 11400000, guid: ab0fa1f93f190fb468d4aaf60cc52695, type: 2}
 --- !u!114 &1756580524
 MonoBehaviour:

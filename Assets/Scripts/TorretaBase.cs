@@ -60,27 +60,19 @@ public class TorretaBase : MonoBehaviour
         Vector3 dir = (target.transform.position - transform.position).normalized;
         float angulo = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        bool enemyALaIzquierda = dir.x < 0;
-
-        if (sr != null)
-            sr.flipX = enemyALaIzquierda;
-
-        float anguloFinal = enemyALaIzquierda
-            ? Mathf.Clamp(180f - angulo, 90f, 270f)
-            : Mathf.Clamp(angulo, -90f, 90f);
-
-        transform.rotation = Quaternion.Euler(0f, 0f, anguloFinal);
+        // Giro libre de 360°
+        transform.rotation = Quaternion.Euler(0f, 0f, angulo);
 
         temporizador += Time.fixedDeltaTime;
         if (temporizador < tiempoEntreDisparos) return;
         temporizador = 0f;
 
         Transform spawn = puntoDisparo != null ? puntoDisparo : transform;
-        float anguloDisparo = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
         GameObject bulletObj = Instantiate(
             balaPrefab,
             spawn.position,
-            Quaternion.Euler(0f, 0f, anguloDisparo)
+            Quaternion.Euler(0f, 0f, angulo)
         );
 
         // Sonido de disparo de torreta
