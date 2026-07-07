@@ -124,6 +124,8 @@ public class PlayerControlet : MonoBehaviour, IDamageable
         {
             Debug.LogWarning("El prefab de bala no tiene el script Bala.");
         }
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayDisparoPlayer();
     }
 
     public void RecibirDanio(float cantidad)
@@ -153,6 +155,9 @@ public class PlayerControlet : MonoBehaviour, IDamageable
         Time.timeScale = 0f;
 
         StartCoroutine(VolverAlMenu());
+        
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayDerrota();
     }
 
     private IEnumerator VolverAlMenu()

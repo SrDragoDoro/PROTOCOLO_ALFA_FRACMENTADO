@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 111503556}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.04, y: 5.81, z: -1}
+  m_LocalPosition: {x: -92.3, y: 5.3, z: -1}
   m_LocalScale: {x: 2, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -455,7 +455,7 @@ Transform:
   m_GameObject: {fileID: 165743688}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.16, y: 5.81, z: -1}
+  m_LocalPosition: {x: -90.1, y: 5.3, z: -1}
   m_LocalScale: {x: 4, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1629,15 +1629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729e656e220cef840b2f910ccedd807b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  ToolTip: {fileID: 0}
-  OptionPanel: {fileID: 0}
-  Opciones:
-  - {fileID: 11400000, guid: dd99fdefcdd3f314ea52cc38393bb6f6, type: 2}
-  - {fileID: 11400000, guid: df473cb29cfeb1c40893c4eb230a99c3, type: 2}
-  - {fileID: 11400000, guid: ab0fa1f93f190fb468d4aaf60cc52695, type: 2}
-  SpawnPoint: {fileID: 9077404419242200126, guid: 9b8ed5d0236dbf147bf5e2bfa1611aa2, type: 3}
-  TurretPrefab: {fileID: 2821945112788893857, guid: 66ad2bb5c4d91ca479ea639f82f54db9, type: 3}
-  CurrentTorre: {fileID: 0}
 --- !u!65 &684364596
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3742,7 +3733,7 @@ Transform:
   m_GameObject: {fileID: 1562560543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 96.8, y: -2.07, z: 0}
+  m_LocalPosition: {x: 77.1, y: -2, z: 0}
   m_LocalScale: {x: -0.84657377, y: 0.7713227, z: 0.75251}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3960,7 +3951,7 @@ Transform:
   m_GameObject: {fileID: 1739345676}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.28, y: 5.81, z: -1}
+  m_LocalPosition: {x: -87.98, y: 5.3, z: -1}
   m_LocalScale: {x: 6.35, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4083,7 +4074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aefd33d02e03714bba5d0342c55a8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
-  sceneName: Nivel1
+  sceneName: Tutorial2
 --- !u!1 &1748989004
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,4 +16,4 @@ MonoBehaviour:
   BulletDamage: 100
   BulletSpeed: 20
   Cadencia: 2
-  TurrentRange: 20
+  TurrentRange: 35

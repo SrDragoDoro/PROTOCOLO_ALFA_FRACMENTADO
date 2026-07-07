@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TurretData3
   m_EditorClassIdentifier: Assembly-CSharp::TurretData
   TurretName: GUN3
-  BulletDamage: 50
+  BulletDamage: 100
   BulletSpeed: 10
   Cadencia: 1.5
-  TurrentRange: 10
+  TurrentRange: 60

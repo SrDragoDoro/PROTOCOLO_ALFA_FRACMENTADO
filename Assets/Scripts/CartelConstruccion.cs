@@ -59,7 +59,7 @@ public class CartelConstruccion : MonoBehaviour
         if (cabezaActual != null) Destroy(cabezaActual);
 
         Vector3 posSpawn = puntoSpawn != null ? puntoSpawn.position : transform.position;
-
+        Debug.Log("Spawneando en: " + posSpawn + " | Cartel: " + gameObject.name);
         // Instanciar Cuerpo
         cuerpoActual = Instantiate(prefabCuerpo, posSpawn, Quaternion.identity);
 

@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class EnemyControllet : MonoBehaviour, IDamageable
+public class EnemyControllet : EntidadViva, IPunteable
 {
-    [Header("Vida del enemigo")]
-    [SerializeField] private float vidaMaxima = 30f;
-    private float vidaActual;
+    [Header("Puntos de victoria")]
+    [SerializeField] private int puntosVictoria = 1;
 
     [Header("Movimiento")]
     [SerializeField] private float velocidad = 3f;
@@ -27,22 +26,18 @@ public class EnemyControllet : MonoBehaviour, IDamageable
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
-    private void Start()
+    protected override void Start()
     {
-        vidaActual = vidaMaxima;
+        base.Start();
 
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         GameObject casa = GameObject.FindGameObjectWithTag(tagCasa);
         if (casa != null)
-        {
             objetivoCasa = casa.transform;
-        }
         else
-        {
-            Debug.LogWarning("[Enemy] No se encontró ningún objeto con tag 'Casa' en la escena.");
-        }
+            Debug.LogWarning("[Enemy] No se encontró ningún objeto con tag 'Casa'.");
     }
 
     private void Update()
@@ -50,27 +45,11 @@ public class EnemyControllet : MonoBehaviour, IDamageable
         temporizadorAtaque -= Time.deltaTime;
 
         Transform amenaza = BuscarAmenazaMasCercana();
-
-        if (amenaza != null)
-        {
-            objetivoActual = amenaza;
-        }
-        else
-        {
-            objetivoActual = objetivoCasa;
-
-            // Solo mira hacia la Casa cuando ese es su objetivo actual
-            if (objetivoCasa != null)
-            {
-                MirarHacia(objetivoCasa.position);
-            }
-        }
+        objetivoActual = amenaza != null ? amenaza : objetivoCasa;
 
         if (objetivoActual == null)
         {
-            if (animator != null)
-                animator.SetBool("Attack", false);
-
+            if (animator != null) animator.SetBool("Attack", false);
             return;
         }
 
@@ -78,8 +57,7 @@ public class EnemyControllet : MonoBehaviour, IDamageable
 
         if (distancia <= rangoAtaque)
         {
-            if (animator != null)
-                animator.SetBool("Attack", true);
+            if (animator != null) animator.SetBool("Attack", true);
 
             if (temporizadorAtaque <= 0f)
             {
@@ -89,33 +67,15 @@ public class EnemyControllet : MonoBehaviour, IDamageable
         }
         else
         {
-            if (animator != null)
-                animator.SetBool("Attack", false);
-
+            if (animator != null) animator.SetBool("Attack", false);
             MoverHacia(objetivoActual.position);
-        }
-    }
-
-    private void MirarHacia(Vector3 objetivo)
-    {
-        if (spriteRenderer == null) return;
-
-        float direccion = objetivo.x - transform.position.x;
-
-        if (direccion > 0f)
-        {
-            spriteRenderer.flipX = false; // mirando a la derecha
-        }
-        else if (direccion < 0f)
-        {
-            spriteRenderer.flipX = true; // mirando a la izquierda
+            MirarHacia(objetivoActual.position);
         }
     }
 
     private Transform BuscarAmenazaMasCercana()
     {
         Collider2D[] resultados = Physics2D.OverlapCircleAll(transform.position, radioDeteccion);
-
         Transform masCercano = null;
         float distanciaMinima = Mathf.Infinity;
 
@@ -123,68 +83,65 @@ public class EnemyControllet : MonoBehaviour, IDamageable
         {
             if (col.CompareTag(tagTorreta) || col.CompareTag(tagPlayer))
             {
-                float distancia = Vector2.Distance(transform.position, col.transform.position);
-
-                if (distancia < distanciaMinima)
+                float dist = Vector2.Distance(transform.position, col.transform.position);
+                if (dist < distanciaMinima)
                 {
-                    distanciaMinima = distancia;
+                    distanciaMinima = dist;
                     masCercano = col.transform;
                 }
             }
         }
-
         return masCercano;
     }
 
     private void MoverHacia(Vector3 destino)
     {
         transform.position = Vector3.MoveTowards(
-            transform.position,
-            destino,
-            velocidad * Time.deltaTime
-        );
+            transform.position, destino, velocidad * Time.deltaTime);
+    }
+
+    private void MirarHacia(Vector3 objetivo)
+    {
+        if (spriteRenderer == null) return;
+        float dir = objetivo.x - transform.position.x;
+        if (dir > 0f) spriteRenderer.flipX = false;
+        else if (dir < 0f) spriteRenderer.flipX = true;
     }
 
     private void Atacar(Transform objetivo)
     {
         IDamageable danable = objetivo.GetComponent<IDamageable>();
-
         if (danable != null)
-        {
             danable.RecibirDanio(danioAtaque);
-        }
         else
-        {
-            Debug.LogWarning("[Enemy] El objetivo '" + objetivo.name + "' no tiene un componente IDamageable.");
-        }
+            Debug.LogWarning("[Enemy] El objetivo '" + objetivo.name + "' no tiene IDamageable.");
     }
 
-    public void RecibirDanio(float cantidad)
+    protected override void Morir()
     {
-        vidaActual -= cantidad;
-
-        if (vidaActual <= 0f)
+        Debug.Log("Morir() llamado en: " + gameObject.name);
+        Debug.Log("GameManager.Instance es null: " + (GameManager.Instance == null));
+        
+        try
         {
-            Morir();
+            if (GameManager.Instance != null)
+                GameManager.Instance.AgregarPuntos(puntosVictoria);
         }
-    }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Error al agregar puntos: " + e.Message);
+        }
 
-    private void Morir()
-    {
         Destroy(gameObject);
     }
+
+    public int GetPuntos() => puntosVictoria;
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, radioDeteccion);
-
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, rangoAtaque);
     }
-}
-
-public interface IDamageable
-{
-    void RecibirDanio(float cantidad);
 }
