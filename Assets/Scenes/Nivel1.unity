@@ -2348,8 +2348,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotonTorreta
   cartel: {fileID: 1363974718}
-  prefabCuerpo: {fileID: 2315102426981784371, guid: b6c52edfc6538984bafc20be1d8502d4, type: 3}
-  prefabCabeza: {fileID: 2314797111861541111, guid: 5c862f62edef8f5409528a3819b63031, type: 3}
+  prefabCuerpo: {fileID: 2315102426981784371, guid: 482ee0ab144fdb2458d227b6681f6cfa, type: 3}
+  prefabCabeza: {fileID: 2314797111861541111, guid: b3093dbd13e371f4b8e2b88209aa6060, type: 3}
   datos: {fileID: 11400000, guid: df473cb29cfeb1c40893c4eb230a99c3, type: 2}
 --- !u!114 &924844206
 MonoBehaviour:
@@ -5982,8 +5982,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotonTorreta
   cartel: {fileID: 1363974718}
-  prefabCuerpo: {fileID: 2315102426981784371, guid: b6c52edfc6538984bafc20be1d8502d4, type: 3}
-  prefabCabeza: {fileID: 2314797111861541111, guid: 5c862f62edef8f5409528a3819b63031, type: 3}
+  prefabCuerpo: {fileID: 2315102426981784371, guid: 482ee0ab144fdb2458d227b6681f6cfa, type: 3}
+  prefabCabeza: {fileID: 2314797111861541111, guid: b3093dbd13e371f4b8e2b88209aa6060, type: 3}
   datos: {fileID: 11400000, guid: ab0fa1f93f190fb468d4aaf60cc52695, type: 2}
 --- !u!114 &2074883487
 MonoBehaviour:
@@ -6202,7 +6202,7 @@ MonoBehaviour:
   puntosParaGanar: 100
   imagenVictoria: {fileID: 1365396683}
   tiempoAntesDeMenu: 1
-  escenaMenuIndex: 0
+  escenaMenuIndex: 3
   CurrentState: 0
 --- !u!4 &2101565657
 Transform:

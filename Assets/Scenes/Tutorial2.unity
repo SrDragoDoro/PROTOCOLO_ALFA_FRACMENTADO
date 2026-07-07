@@ -2247,7 +2247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Parallax
   targetCamera: {fileID: 1864695096}
   efectoParallax: 0.6
-  longitudSprite: 6.1
+  longitudSprite: 30
 --- !u!212 &1172488309
 SpriteRenderer:
   serializedVersion: 2
@@ -2301,8 +2301,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 30, y: 11.25}
+  m_DrawMode: 2
+  m_Size: {x: 120, y: 11.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2354,7 +2354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Parallax
   targetCamera: {fileID: 1864695096}
   efectoParallax: 0
-  longitudSprite: 6.1
+  longitudSprite: 30
 --- !u!212 &1176200857
 SpriteRenderer:
   serializedVersion: 2
@@ -2408,8 +2408,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 30, y: 11.25}
+  m_DrawMode: 2
+  m_Size: {x: 120, y: 11.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2461,7 +2461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Parallax
   targetCamera: {fileID: 1864695096}
   efectoParallax: 0.58
-  longitudSprite: 6.1
+  longitudSprite: 30
 --- !u!212 &1222293775
 SpriteRenderer:
   serializedVersion: 2
@@ -2515,8 +2515,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 30, y: 11.25}
+  m_DrawMode: 2
+  m_Size: {x: 120, y: 11.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2568,7 +2568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Parallax
   targetCamera: {fileID: 1864695096}
   efectoParallax: 0.54
-  longitudSprite: 6.1
+  longitudSprite: 30
 --- !u!212 &1269323143
 SpriteRenderer:
   serializedVersion: 2
@@ -2622,8 +2622,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 30, y: 11.25}
+  m_DrawMode: 2
+  m_Size: {x: 120, y: 11.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3582,7 +3582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Parallax
   targetCamera: {fileID: 1864695096}
   efectoParallax: 0.64
-  longitudSprite: 6.1
+  longitudSprite: 30
 --- !u!212 &1633520758
 SpriteRenderer:
   serializedVersion: 2
@@ -3636,8 +3636,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 30, y: 11.25}
+  m_DrawMode: 2
+  m_Size: {x: 120, y: 11.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
